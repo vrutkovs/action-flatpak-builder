@@ -8,7 +8,7 @@ cd "${1}"
 flatpak --user remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak --user install -y flathub ${2}
 
-flatpak-builder --force-clean --ccache --require-changes --repo=repo \
+flatpak-builder --force-clean --disable-rofiles-fuse --ccache --require-changes --repo=repo \
 		--subject="Nightly build of ${3}, `date`" app ${4}
 
 flatpak build-update-repo --prune --prune-depth=20 --generate-static-deltas repo
