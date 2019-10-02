@@ -1,0 +1,30 @@
+name: 'FlatpakBuild'
+description: 'Build flatpak'
+author: 'Vadim Rutkovsky'
+icon: package
+color: purple
+inputs:
+  path:
+    description: 'Path to source code'
+    default: '.'
+    required: true
+  deps:
+    description: 'Install dependencies'
+    default: ''
+    required: true
+  app:
+    description: 'App name'
+    default: ''
+    required: true
+  definition:
+    description: 'Path to flatpak definition'
+    default: ''
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.path }}
+    - ${{ inputs.deps }}
+    - ${{ inputs.app }}
+    - ${{ inputs.definition }}
